@@ -244,7 +244,7 @@ function getUserName(sender_psid){
   }, (err, res, body) => {
     if (!err) {
 		Parsedbody = JSON.parse(body)
-		console.log(Parsedbody[0]);
+		console.log(Parsedbody[0][0]);
 		return JSON.parse(body);
     } else {
       console.error("Unable to send message:" + err);
