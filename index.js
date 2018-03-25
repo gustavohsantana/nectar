@@ -188,7 +188,7 @@ function handleMessage(sender_psid, received_message) {
   
   callSendAPI(sender_psid, response3); 
   
-  if(received_message.message.text.localeCompare("Roupas") != 0 && received_message.message.text.localeCompare("Restaurantes") && received_message.message.text.localeCompare("Mercados")){
+  if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
 	  // Sends the response2 message
          callSendAPI(sender_psid, response3); 
   }
