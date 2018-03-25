@@ -160,7 +160,7 @@ function handleMessage(sender_psid, received_message) {
 	
  response3 = {
 	 
-    "text": "Here is a quick reply!",
+    "text": "Escolha uma categoria abaixo 👇",
     "quick_replies":[
       {
         "content_type":"text",
@@ -185,8 +185,6 @@ function handleMessage(sender_psid, received_message) {
  }
   console.log(received_message.text);
 
-  callSendAPI(sender_psid, response3); 
-  
   if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
 	  // Sends the response2 message
          callSendAPI(sender_psid, response3); 
