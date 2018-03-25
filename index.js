@@ -209,7 +209,7 @@ function handlePostback(sender_psid, received_postback) {
   callSendAPI(sender_psid, response3);
   }
   
-  if (payload === 'yes') {
+  if (payload === 'no') {
 	   callSendAPI(sender_psid, getCategories());
   }
 
