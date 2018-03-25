@@ -214,7 +214,7 @@ function callSendAPI(sender_psid, response) {
 
 // Other methods
 
-function getRandomArbitrary()
+function getRandomArbitrary(){
   let min,max;
   min = 0;
   max = 2;
