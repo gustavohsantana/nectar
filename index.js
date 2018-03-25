@@ -93,7 +93,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName(sender_psid)+` olha oque encontramos para você! 😎`
+      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName(sender_psid)+` olha o que encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
@@ -240,7 +240,7 @@ function getUserName(sender_psid){
   }, (err, res, body) => {
     if (!err) {
 	  console.log(body.first_name);
-	  return body.first_name ;
+	  return body.first_name.value ;
     } else {
       console.error("Unable to send message:" + err);
     }
