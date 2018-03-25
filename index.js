@@ -185,7 +185,7 @@ function handlePostback(sender_psid, received_postback) {
   }
   
   response3 = {"text": "Assim que precisar de mais cupons é só chamar 😉" }
-  callSendAPI(sender_psid, response2);
+  callSendAPI(sender_psid, response3);
 
 }
 
