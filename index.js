@@ -164,7 +164,9 @@ function handleMessage(sender_psid, received_message) {
   callSendAPI(sender_psid, response);  
   
   // Sends the response2 message
-  callSendAPI(sender_psid, response2);  
+  callSendAPI(sender_psid, response2);
+
+  callSendAPI(sender_psid, getCategories());  
 
 }
 
@@ -261,4 +263,49 @@ function handleData(first_name){
 	
 	USER_NAME = first_name;
 	console.log(USER_NAME);
+}
+
+function getCategories(){
+	let response;
+	
+	response = {
+	 
+    "text": "Escolha uma categoria abaixo 👇",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Roupas",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://www.minhalavanderiarestaura.com.br/images/apoio/icones/icones_roupas.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Restaurantes",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"https://www.electricchoice.com/wp-content/uploads/2015/06/1433289588_restaurant.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Mercados",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Lanchonetes",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://travelpedia.com.br/wp-content/uploads/2018/01/fast-food-icon.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Novos",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"https://img.tuttoandroid.net/wp-content/uploads/2017/12/SagonCircleIconPack.png"
+      }
+    ]
+	 
+ }
+ 
+ return response;
+	
 }
