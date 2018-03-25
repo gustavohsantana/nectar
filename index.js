@@ -217,7 +217,7 @@ function callSendAPI(sender_psid, response) {
 // Other methods
 
 function getRandomResponse(){
-	var matrix =  = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado Central","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
+	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado Central","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
 	["Descontos de R$:4,00 no corte de cabelo no BarberShop", "http://schottdesigner.com/wp-content/uploads/2017/08/barbearia-espaco-mb-logo-portfolio.jpg"],
 	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"]];  
 	
