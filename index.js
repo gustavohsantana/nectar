@@ -140,12 +140,12 @@ function handleMessage(sender_psid, received_message) {
             "buttons": [
               {
                 "type": "postback",
-                "title": "Quero o desconto! 👍❤️",
+                "title": "Quero o desconto! 👍",
                 "payload": "yes",
               },
               {
                 "type": "postback",
-                "title": "Não, obrigado! 👎💔",
+                "title": "Não, obrigado! 👎",
                 "payload": "no",
               }
             ],
@@ -165,17 +165,17 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
 	
-   let response,response2;
+   let response,response2,response3;
   
   // Get the payload for the postback
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = {"text": "Aproveite seu desconto 😄🙌 ! Abaixo está seu cupom: " }
-	response2 = {"text": "Feliz2K18" }
+    response = {"text": "Acabou de sair do forno 😄! Abaixo está seu cupom: " }
+	response2 = {"text": "CUPOM: Feliz2K18" }
   } else if (payload === 'no') {
-    response = { "text": "🐨 Oops.. Que tal procurar por outras promoções ? " }
+    response = { "text": "Oops.. Que tal procurar por outras promoções ? " }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
@@ -183,6 +183,9 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
   }
+  
+  response3 = {"text": "Assim que precisar de mais cupons é só chamar 😉" }
+  callSendAPI(sender_psid, response2);
 
 }
 
