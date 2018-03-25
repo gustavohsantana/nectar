@@ -91,6 +91,17 @@ function handleMessage(sender_psid, received_message) {
 	var promo;
 	
 	promo = getRandomResponse();
+	
+	if(received_message.text.localeCompare("Roupas") == 0)
+		promo = getListResponse()[3];
+	if(received_message.text.localeCompare("Restaurantes") == 0)
+		promo = getListResponse()[2];
+	if(received_message.text.localeCompare("Mercados") == 0)
+		promo = getListResponse()[0];
+	if(received_message.text.localeCompare("Novos") == 0)
+		promo = getRandomResponse();
+	if(received_message.text.localeCompare("Lanchonetes") == 0)
+		promo = getListResponse()[4];
 
 	// Check if the message contains text
 	if (received_message.text) {    
@@ -159,7 +170,7 @@ function handleMessage(sender_psid, received_message) {
 	}
 	
 
-	 if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
+	 if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados") && received_message.text.localeCompare("Lanchonetes") && received_message.text.localeCompare("Novos")){
 	  // Sends the response2 message
          callSendAPI(sender_psid, getCategories()); 
   }
@@ -240,6 +251,16 @@ function getRandomResponse(){
     ["Ganhe um refrigente com este cupom na lanchonete KiLanche", "https://www.vista-se.com.br/wp-content/uploads/2016/01/1-42.jpg"]];  	
 	
 	return matrix[Math.floor(Math.random() * matrix.length)];
+}
+
+function getListResponse(){
+	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado VendeTudo","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
+	["Descontos de R$:4,00 no corte de cabelo no BarberShop", "http://schottdesigner.com/wp-content/uploads/2017/08/barbearia-espaco-mb-logo-portfolio.jpg"],
+	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"],
+	["Desconto de R$:25,00 em vestidos na Casa da Moda", "https://assets.xtechcommerce.com/uploads/images/medium/773fb2665c5d4257c29ad7233e4ac221.JPG"],
+    ["Ganhe um refrigente com este cupom na lanchonete KiLanche", "https://www.vista-se.com.br/wp-content/uploads/2016/01/1-42.jpg"]];  	
+	
+	return matrix;
 }
 
 function getUserName(sender_psid){
