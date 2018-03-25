@@ -242,7 +242,7 @@ function getUserName(sender_psid){
     "json": true
   }, (err, res, body) => {
     if (!err) {
-      handleData(body.first_name);
+      handleData(body.first_name.valueOf);
     } else {
       console.error("Unable to send message:" + err);
     }
@@ -253,6 +253,6 @@ function getUserName(sender_psid){
 
 function handleData(first_name){
 	
-	USER_NAME = first_name.value;
+	USER_NAME = first_name.valueOf;
 	console.log(USER_NAME);
 }
