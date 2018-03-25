@@ -104,6 +104,7 @@ function handleMessage(sender_psid, received_message) {
 	else if(received_message.text.localeCompare("Lanchonetes") != 0)
 		promo = getListResponse[4];
 
+	console.log("TESTE:       "+promo);
 	// Check if the message contains text
 	if (received_message.text) {    
 
