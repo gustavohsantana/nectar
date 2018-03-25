@@ -93,18 +93,17 @@ function handleMessage(sender_psid, received_message) {
 	// get random promo
 	promo = getRandomResponse();
 	
-/* 	if(received_message.text.localeCompare("Roupas") != 0)
-		promo = getListResponse()[3];
-	if(received_message.text.localeCompare("Restaurantes") != 0)
-		promo = getListResponse()[2];
-	if(received_message.text.localeCompare("Mercados") != 0)
-		promo = getListResponse()[0];
-	if(received_message.text.localeCompare("Novos") != 0)
+	if(received_message.text.localeCompare("Roupas") != 0)
+		promo = getListResponse[3];
+	else if(received_message.text.localeCompare("Restaurantes") != 0)
+		promo = getListResponse[2];
+	else if(received_message.text.localeCompare("Mercados") != 0)
+		promo = getListResponse[0];
+	else if(received_message.text.localeCompare("Novo") != 0)
 		promo = getRandomResponse();
-	if(received_message.text.localeCompare("Lanchonetes") != 0)
-		promo = getListResponse()[4]; */
+	else if(received_message.text.localeCompare("Lanchonetes") != 0)
+		promo = getListResponse[4];
 
-	console.log("TESTE:       "+promo);
 	// Check if the message contains text
 	if (received_message.text) {    
 
@@ -172,20 +171,18 @@ function handleMessage(sender_psid, received_message) {
 	}
 	
  
-  //console.log(received_message.text);
+  console.log(received_message.text);
 
-  /* if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
+  if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
 	  // Sends the response2 message
          callSendAPI(sender_psid, getCategories()); 
   }
-  else{ */
+  else{
   // Sends the response message
   callSendAPI(sender_psid, response);  
   
   // Sends the response2 message
-  callSendAPI(sender_psid, response2);
-
-  callSendAPI(sender_psid, getCategories());   
+  callSendAPI(sender_psid, response2);  
   
   }
 
@@ -322,18 +319,6 @@ function getCategories(){
         "title":"Mercados",
         "payload":"<POSTBACK_PAYLOAD>",
         "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Lanchonetes",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://travelpedia.com.br/wp-content/uploads/2018/01/fast-food-icon.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Novos",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"https://img.tuttoandroid.net/wp-content/uploads/2017/12/SagonCircleIconPack.png"
       }
     ]
 	 
