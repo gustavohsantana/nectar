@@ -200,20 +200,15 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
   
-  // Send
-  
-  request({
-    "uri": "https://graph.facebook.com/v2.6/"+"sender_psid"+"?fields=first_name,last_name,profile_pic&access_token=<PAGE_ACCESS_TOKEN>",
-    "method": "GET",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!');
-	  console.log(res);
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  }); 
+  FB.api(
+  '/{'sender_psid'}',
+  'GET',
+  {},
+  function(response) {
+      // Insert your code here
+	  console.log(response);
+  }
+);
   
   // Send the HTTP request to the Messenger Platform
   request({
