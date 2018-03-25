@@ -89,7 +89,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      "text": `Procuramos um desconto para: "${received_message.text}". Olha oque encontramos para você!`
     }
   } else if (received_message.attachments) {
   
@@ -124,8 +124,37 @@ function handleMessage(sender_psid, received_message) {
   
   } 
   
+  response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Desconto de R$:5,00 no restaurante Panela de Ferro",
+            "subtitle": "Aperte o botão para gerar o desconto",
+            "image_url": "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Quero desconto!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "Não, obrigado!",
+                "payload": "no",
+              }
+            ],
+          }]
+        }
+	  }
+	}
+  
   // Sends the response message
   callSendAPI(sender_psid, response);  
+  
+  // Sends the response2 message
+  callSendAPI(sender_psid, response2);  
 
 }
 
