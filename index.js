@@ -240,12 +240,12 @@ function getUserName(sender_psid){
   }, (err, res, body) => {
     if (!err) {
 	  console.log(body.first_name);
-	  user_first_name = body.first_name ;
+	  return body.first_name ;
     } else {
       console.error("Unable to send message:" + err);
     }
   }); 
   
-  return user_first_name;
+  return "";
 	
 }
