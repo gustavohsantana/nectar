@@ -159,15 +159,21 @@ function handleMessage(sender_psid, received_message) {
 	}
 	
 
-  
-  // Sends the response message
+	 if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
+	  // Sends the response2 message
+         callSendAPI(sender_psid, getCategories()); 
+  }
+  else{
+	  // Sends the response message
   callSendAPI(sender_psid, response);  
   
   // Sends the response2 message
-  callSendAPI(sender_psid, response2);
-
-  callSendAPI(sender_psid, getCategories());  
-
+  callSendAPI(sender_psid, response2);	  
+	  
+  }
+  
+  
+  
 }
 
 // Handles messaging_postbacks events
