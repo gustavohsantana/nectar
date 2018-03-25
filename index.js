@@ -97,7 +97,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName(sender_psid)+` olha o que encontramos para você! 😎`
+      "text": `Procuramos um desconto para: "${received_message.text}". `+USER_NAME+` olha o que encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
@@ -157,12 +157,41 @@ function handleMessage(sender_psid, received_message) {
         }
 	  }
 	}
+	
+ response3 = {
+	 
+    "text": "Here is a quick reply!",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Roupas",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://www.minhalavanderiarestaura.com.br/images/apoio/icones/icones_roupas.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Restaurantes",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"https://www.electricchoice.com/wp-content/uploads/2015/06/1433289588_restaurant.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Mercados",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
+      }
+    ]
+	 
+ }
   
   // Sends the response message
   callSendAPI(sender_psid, response);  
   
   // Sends the response2 message
   callSendAPI(sender_psid, response2);  
+  
+  // Sends the response2 message
+  callSendAPI(sender_psid, response3);  
 
 }
 
