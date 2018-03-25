@@ -93,7 +93,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". Olha oque encontramos para você! 😎`
+      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName()+` olha oque encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
@@ -174,6 +174,7 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     response = {"text": "Acabou de sair do forno 😄! Abaixo está seu cupom: " }
 	response2 = {"text": "CUPOM: Feliz2K18" }
+	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+getUserName()+" !😉" }
   } else if (payload === 'no') {
     response = { "text": "Oops.. Que tal procurar por outras promoções ? " }
   }
@@ -182,10 +183,8 @@ function handlePostback(sender_psid, received_postback) {
   
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
-  }
-  
-  response3 = {"text": "Assim que precisar de mais cupons é só chamar 😉" }
   callSendAPI(sender_psid, response3);
+  }
 
 }
 
@@ -199,22 +198,7 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
-  
-   let url = "https://graph.facebook.com/v2.6/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD";
-  
-   // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": url,
-    "method": "GET",
-    "json": true
-  }, (err, res, body) => {
-    if (!err) {
-	  console.log(body.first_name);
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  }); 
- 
+
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
@@ -240,4 +224,26 @@ function getRandomResponse(){
 	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"]];  
 	
 	return matrix[Math.floor(Math.random() * matrix.length)];
+}
+
+function getUserName(){
+	
+   let url = "https://graph.facebook.com/v2.6/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD";
+   let user_first_name ;
+   // Send the HTTP request to the Messenger Platform
+  request({
+    "uri": url,
+    "method": "GET",
+    "json": true
+  }, (err, res, body) => {
+    if (!err) {
+	  console.log(body.first_name);
+	  user_first_name = first_name ;
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
+  
+  return user_first_name;
+	
 }
