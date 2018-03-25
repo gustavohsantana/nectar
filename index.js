@@ -1,6 +1,7 @@
 'use strict';
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const PSID;
 
 // Imports dependencies and set up http server
 const
@@ -28,9 +29,10 @@ app.post('/webhook', (req, res) => {
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
 	  
-	   // Get the sender PSID
+	  // Get the sender PSID
 	  let sender_psid = webhook_event.sender.id;
       console.log('Sender PSID: ' + sender_psid);
+	  PSID = sender_psid;
 	  
 	  // Check if the event is a message or postback and
 	  // pass the event to the appropriate handler function
@@ -199,6 +201,21 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
+  
+  // Send
+  
+  request({
+    "uri": "https://graph.facebook.com/v2.6/<PSID>?fields=first_name,last_name,profile_pic&access_token=<PAGE_ACCESS_TOKEN>"",
+    "method": "GET",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+      console.log('message sent!');
+	  console.log(res);
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
   
   // Send the HTTP request to the Messenger Platform
   request({
