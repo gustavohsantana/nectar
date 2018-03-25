@@ -86,25 +86,12 @@ app.get('/webhook', (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
 	
-	let response,response2,response3;
+	let response,response2;
 	
 	var promo;
 	
-	// get random promo
 	promo = getRandomResponse();
-	
-/* 	if(received_message.text.localeCompare("Roupas") != 0)
-		promo = getListResponse()[3];
-	if(received_message.text.localeCompare("Restaurantes") != 0)
-		promo = getListResponse()[2];
-	if(received_message.text.localeCompare("Mercados") != 0)
-		promo = getListResponse()[0];
-	if(received_message.text.localeCompare("Novos") != 0)
-		promo = getRandomResponse();
-	if(received_message.text.localeCompare("Lanchonetes") != 0)
-		promo = getListResponse()[4]; */
 
-	console.log("TESTE:       "+promo);
 	// Check if the message contains text
 	if (received_message.text) {    
 
@@ -171,23 +158,13 @@ function handleMessage(sender_psid, received_message) {
 	  }
 	}
 	
- 
-  //console.log(received_message.text);
 
-  /* if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
-	  // Sends the response2 message
-         callSendAPI(sender_psid, getCategories()); 
-  }
-  else{ */
+  
   // Sends the response message
   callSendAPI(sender_psid, response);  
   
   // Sends the response2 message
-  callSendAPI(sender_psid, response2);
-
- // callSendAPI(sender_psid, getCategories());   
-  
-  }
+  callSendAPI(sender_psid, response2);  
 
 }
 
@@ -213,8 +190,6 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
   callSendAPI(sender_psid, response3);
-  } else if(payload === 'no'){
-	  callSendAPI(sender_psid, getCategories());
   }
 
 }
@@ -250,23 +225,13 @@ function callSendAPI(sender_psid, response) {
 // Other methods
 
 function getRandomResponse(){
-	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado VendeTudo","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
+	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado Central","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
 	["Descontos de R$:4,00 no corte de cabelo no BarberShop", "http://schottdesigner.com/wp-content/uploads/2017/08/barbearia-espaco-mb-logo-portfolio.jpg"],
 	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"],
 	["Desconto de R$:25,00 em vestidos na Casa da Moda", "https://assets.xtechcommerce.com/uploads/images/medium/773fb2665c5d4257c29ad7233e4ac221.JPG"],
     ["Ganhe um refrigente com este cupom na lanchonete KiLanche", "https://www.vista-se.com.br/wp-content/uploads/2016/01/1-42.jpg"]];  	
 	
 	return matrix[Math.floor(Math.random() * matrix.length)];
-}
-
-function getListResponse(){
-	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado VendeTudo","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
-	["Descontos de R$:4,00 no corte de cabelo no BarberShop", "http://schottdesigner.com/wp-content/uploads/2017/08/barbearia-espaco-mb-logo-portfolio.jpg"],
-	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"],
-	["Desconto de R$:25,00 em vestidos na Casa da Moda", "https://assets.xtechcommerce.com/uploads/images/medium/773fb2665c5d4257c29ad7233e4ac221.JPG"],
-    ["Ganhe um refrigente com este cupom na lanchonete KiLanche", "https://www.vista-se.com.br/wp-content/uploads/2016/01/1-42.jpg"]];  	
-	
-	return matrix;
 }
 
 function getUserName(sender_psid){
@@ -296,49 +261,4 @@ function handleData(first_name){
 	
 	USER_NAME = first_name;
 	console.log(USER_NAME);
-}
-
-function getCategories(){
-	let response;
-	
-	response = {
-	 
-    "text": "Escolha uma categoria abaixo 👇",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Roupas",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://www.minhalavanderiarestaura.com.br/images/apoio/icones/icones_roupas.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Restaurantes",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"https://www.electricchoice.com/wp-content/uploads/2015/06/1433289588_restaurant.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Mercados",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Lanchonetes",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://travelpedia.com.br/wp-content/uploads/2018/01/fast-food-icon.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Novos",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"https://img.tuttoandroid.net/wp-content/uploads/2017/12/SagonCircleIconPack.png"
-      }
-    ]
-	 
- }
- 
- return response;
-	
 }
