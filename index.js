@@ -158,36 +158,12 @@ function handleMessage(sender_psid, received_message) {
 	  }
 	}
 	
- response3 = {
-	 
-    "text": "Escolha uma categoria abaixo 👇",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Roupas",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://www.minhalavanderiarestaura.com.br/images/apoio/icones/icones_roupas.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Restaurantes",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"https://www.electricchoice.com/wp-content/uploads/2015/06/1433289588_restaurant.png"
-      },
-	  {
-        "content_type":"text",
-        "title":"Mercados",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
-      }
-    ]
-	 
- }
+ 
   console.log(received_message.text);
 
   if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
 	  // Sends the response2 message
-         callSendAPI(sender_psid, response3); 
+         callSendAPI(sender_psid, getCategories()); 
   }
   else{
   // Sends the response message
@@ -222,6 +198,8 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
   callSendAPI(sender_psid, response3);
+  } else if(payload === 'no'){
+	  callSendAPI(sender_psid, getCategories());
   }
 
 }
@@ -293,4 +271,37 @@ function handleData(first_name){
 	
 	USER_NAME = first_name;
 	console.log(USER_NAME);
+}
+
+function getCategories(){
+	let response;
+	
+	response = {
+	 
+    "text": "Escolha uma categoria abaixo 👇",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Roupas",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://www.minhalavanderiarestaura.com.br/images/apoio/icones/icones_roupas.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Restaurantes",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"https://www.electricchoice.com/wp-content/uploads/2015/06/1433289588_restaurant.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Mercados",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
+      }
+    ]
+	
+	return response;
+	 
+ }
+	
 }
