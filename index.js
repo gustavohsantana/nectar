@@ -195,7 +195,7 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = {"text": "Acabou de sair do forno 😄! Abaixo está seu cupom: " }
+    response = {"text": "Protinho 😄! Abaixo está seu cupom: " }
 	response2 = {"text": "CUPOM: Feliz2K18" }
 	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+USER_NAME+" !😉" }
   } else if (payload === 'no') {
