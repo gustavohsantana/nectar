@@ -89,7 +89,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". Olha oque encontramos para você!`
+      "text": `Procuramos um desconto para: "${received_message.text}". Olha oque encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
@@ -136,12 +136,12 @@ function handleMessage(sender_psid, received_message) {
             "buttons": [
               {
                 "type": "postback",
-                "title": "Quero desconto!",
+                "title": "Quero o desconto! 👍❤️",
                 "payload": "yes",
               },
               {
                 "type": "postback",
-                "title": "Não, obrigado!",
+                "title": "Não, obrigado! 👎💔",
                 "payload": "no",
               }
             ],
@@ -168,9 +168,10 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Thanks!" }
+    response = { "Aproveite seu desconto 😄🙌 ! Aqui está seu cupom: ": "2K18HAPPY!" }
+	response2 
   } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+    response = { "text": "Oops.. Temos outras promoções diferentes :) " }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
