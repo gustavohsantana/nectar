@@ -244,7 +244,7 @@ function getUserName(sender_psid){
   }, (err, res, body) => {
     if (!err) {
 		Parsedbody = body['first_name'];
-		handleData(Parsedbody.valueOf)
+		handleData(Parsedbody)
 		console.log(Parsedbody);
 		return Parsedbody;
     } else {
