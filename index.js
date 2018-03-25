@@ -182,9 +182,7 @@ function handleMessage(sender_psid, received_message) {
   callSendAPI(sender_psid, response2);	  
 	  
   }
-  
-  
-  
+
 }
 
 // Handles messaging_postbacks events
@@ -209,6 +207,10 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
   callSendAPI(sender_psid, response3);
+  }
+  
+  if (payload === 'yes') {
+	   callSendAPI(sender_psid, getCategories());
   }
 
 }
