@@ -183,7 +183,9 @@ function handleMessage(sender_psid, received_message) {
     ]
 	 
  }
-  if(received_message.quick_reply.title.localeCompare("Roupas") != 0 || received_message.text.localeCompare("Restaurantes") || received_message.text.localeCompare("Mercados")){
+  console.log(received_message.text);
+  console.log(received_message.message.text);
+  if(received_message.message.text.localeCompare("Roupas") != 0 || received_message.message.text.localeCompare("Restaurantes") || received_message.message.text.localeCompare("Mercados")){
 	  // Sends the response2 message
          callSendAPI(sender_psid, response3); 
   }
