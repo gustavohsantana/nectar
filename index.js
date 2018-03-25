@@ -184,8 +184,7 @@ function handleMessage(sender_psid, received_message) {
 	 
  }
   console.log(received_message.text);
-  console.log(received_message.message.text);
-  
+
   callSendAPI(sender_psid, response3); 
   
   if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados")){
