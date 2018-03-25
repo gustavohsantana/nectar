@@ -82,7 +82,7 @@ app.get('/webhook', (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
 	
-	let response;
+	let response,response2;
 
 	// Check if the message contains text
 	if (received_message.text) {    
