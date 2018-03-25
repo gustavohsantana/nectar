@@ -229,7 +229,7 @@ function getRandomResponse(){
 }
 
 function getUserName(sender_psid){
-	
+	let body = [];
    let url = "https://graph.facebook.com/v2.6/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD";
    let user_first_name ;
    // Send the HTTP request to the Messenger Platform
@@ -239,14 +239,14 @@ function getUserName(sender_psid){
     "json": true
   }, (err, res, body) => {
     if (!err) {
-	  var response = JSON.parse(body);
-      console.log(response);
-      return console.log(response.first_name);
+      console.log(body.first_name);
+	  body.end(body);
     } else {
       console.error("Unable to send message:" + err);
     }
+
   }); 
-  
+  console.log(body);
   return "";
 	
 }
