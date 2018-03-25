@@ -169,7 +169,7 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "Aproveite seu desconto 😄🙌 ! Abaixo está seu cupom: " }
-	response2 = { "Feliz2K18" }
+	//response2 = { "Feliz2K18" }
   } else if (payload === 'no') {
     response = { "text": "🐨 Oops.. Que tal procurar por outras promoções ? " }
   }
