@@ -93,7 +93,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName()+` olha oque encontramos para você! 😎`
+      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName(sender_psid)+` olha oque encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
@@ -174,7 +174,7 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     response = {"text": "Acabou de sair do forno 😄! Abaixo está seu cupom: " }
 	response2 = {"text": "CUPOM: Feliz2K18" }
-	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+getUserName()+" !😉" }
+	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+getUserName(sender_psid)+" !😉" }
   } else if (payload === 'no') {
     response = { "text": "Oops.. Que tal procurar por outras promoções ? " }
   }
@@ -221,12 +221,14 @@ function callSendAPI(sender_psid, response) {
 function getRandomResponse(){
 	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado Central","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
 	["Descontos de R$:4,00 no corte de cabelo no BarberShop", "http://schottdesigner.com/wp-content/uploads/2017/08/barbearia-espaco-mb-logo-portfolio.jpg"],
-	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"]];  
+	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"],
+	["Desconto de R$:25,00 em vestidos na Casa da Moda", "https://assets.xtechcommerce.com/uploads/images/medium/773fb2665c5d4257c29ad7233e4ac221.JPG"],
+    ["Ganhe um refrigente com este cupom na lanchonete KiLanche", "https://www.vista-se.com.br/wp-content/uploads/2016/01/1-42.jpg"]];  	
 	
 	return matrix[Math.floor(Math.random() * matrix.length)];
 }
 
-function getUserName(){
+function getUserName(sender_psid){
 	
    let url = "https://graph.facebook.com/v2.6/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD";
    let user_first_name ;
