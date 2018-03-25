@@ -200,15 +200,12 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
   
-  FB.api(
-  '/{'sender_psid'}',
-  'GET',
-  {},
-  function(response) {
-      // Insert your code here
-	  console.log(response);
-  }
-);
+  let url = "https://graph.facebook.com/v2.6/1624668127624964?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD"
+  request.get(url, (error, response, body) => {
+  let json = JSON.parse(body);
+  console.log(response.fields
+  );
+});
   
   // Send the HTTP request to the Messenger Platform
   request({
