@@ -243,7 +243,7 @@ function getUserName(sender_psid){
     "json": true
   }, (err, res, body) => {
     if (!err) {
-		Parsedbody = obj['first_name']
+		Parsedbody = body['first_name']
 		console.log(Parsedbody);
 		return JSON.parse(Parsedbody);
     } else {
