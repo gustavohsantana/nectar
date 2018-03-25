@@ -2,6 +2,7 @@
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
+let USER_NAME = "";
 // Imports dependencies and set up http server
 const
   request = require('request'),
@@ -31,6 +32,9 @@ app.post('/webhook', (req, res) => {
 	  // Get the sender PSID
 	  let sender_psid = webhook_event.sender.id;
       console.log('Sender PSID: ' + sender_psid);
+	  
+	  // Get The user name
+	  getUserName(sender_psid);
 	  
 	  // Check if the event is a message or postback and
 	  // pass the event to the appropriate handler function
@@ -93,7 +97,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName(sender_psid)+` olha o que encontramos para você! 😎`
+      "text": `Procuramos um desconto para: "${received_message.text}". `+USER_NAME+` olha o que encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
@@ -174,7 +178,7 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     response = {"text": "Acabou de sair do forno 😄! Abaixo está seu cupom: " }
 	response2 = {"text": "CUPOM: Feliz2K18" }
-	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+getUserName(sender_psid)+" !😉" }
+	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+USER_NAME+" !😉" }
   } else if (payload === 'no') {
     response = { "text": "Oops.. Que tal procurar por outras promoções ? " }
   }
@@ -229,7 +233,6 @@ function getRandomResponse(){
 }
 
 function getUserName(sender_psid){
-	let body = [];
    let url = "https://graph.facebook.com/v2.6/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD";
    let user_first_name ;
    // Send the HTTP request to the Messenger Platform
@@ -239,15 +242,17 @@ function getUserName(sender_psid){
     "json": true
   }, (err, res, body) => {
     if (!err) {
-      console.log(body.first_name);
-	  body = body.first_name;
-	  console.log(body);
+      handleData(body.first_name);
     } else {
       console.error("Unable to send message:" + err);
     }
 
   }); 
-  console.log(body);
-  return "";
+  
+}
+
+function handleData(first_name){
 	
+	USER_NAME = first_name.value;
+	console.log(USER_NAME);
 }
