@@ -97,7 +97,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Procuramos um desconto para: "${received_message.text}". `+USER_NAME+` olha o que encontramos para você! 😎`
+      "text": `Procuramos um desconto para: "${received_message.text}". `+getUserName(sender_psid)+` olha o que encontramos para você! 😎`
     }
   } else if (received_message.attachments) {
   
