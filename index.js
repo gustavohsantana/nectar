@@ -93,7 +93,7 @@ function handleMessage(sender_psid, received_message) {
 	// get random promo
 	promo = getRandomResponse();
 	
-	if(received_message.text.localeCompare("Roupas") != 0)
+/* 	if(received_message.text.localeCompare("Roupas") != 0)
 		promo = getListResponse()[3];
 	if(received_message.text.localeCompare("Restaurantes") != 0)
 		promo = getListResponse()[2];
@@ -102,7 +102,7 @@ function handleMessage(sender_psid, received_message) {
 	if(received_message.text.localeCompare("Novos") != 0)
 		promo = getRandomResponse();
 	if(received_message.text.localeCompare("Lanchonetes") != 0)
-		promo = getListResponse()[4];
+		promo = getListResponse()[4]; */
 
 	console.log("TESTE:       "+promo);
 	// Check if the message contains text
