@@ -90,7 +90,19 @@ function handleMessage(sender_psid, received_message) {
 	
 	var promo;
 	
+	// get random promo
 	promo = getRandomResponse();
+	
+	if(received_message.text.localeCompare("Roupas") != 0)
+		promo = getListResponse[3];
+	else if(received_message.text.localeCompare("Restaurantes") != 0)
+		promo = getListResponse[2];
+	else if(received_message.text.localeCompare("Mercados") != 0)
+		promo = getListResponse[0];
+	else if(received_message.text.localeCompare("Novos") != 0)
+		promo = getRandomResponse();
+	else if(received_message.text.localeCompare("Lanchonetes") != 0)
+		promo = getListResponse[4];
 
 	// Check if the message contains text
 	if (received_message.text) {    
@@ -244,6 +256,16 @@ function getRandomResponse(){
 	return matrix[Math.floor(Math.random() * matrix.length)];
 }
 
+function getListResponse(){
+	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado VendeTudo","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
+	["Descontos de R$:4,00 no corte de cabelo no BarberShop", "http://schottdesigner.com/wp-content/uploads/2017/08/barbearia-espaco-mb-logo-portfolio.jpg"],
+	["Desconto de R$:5,00 no restaurante Panela de Ferro", "http://www.bloglosophy.com/wp-content/uploads/2014/04/spicy-sausage-hot-pot-600.jpg"],
+	["Desconto de R$:25,00 em vestidos na Casa da Moda", "https://assets.xtechcommerce.com/uploads/images/medium/773fb2665c5d4257c29ad7233e4ac221.JPG"],
+    ["Ganhe um refrigente com este cupom na lanchonete KiLanche", "https://www.vista-se.com.br/wp-content/uploads/2016/01/1-42.jpg"]];  	
+	
+	return matrix;
+}
+
 function getUserName(sender_psid){
    let url = "https://graph.facebook.com/v2.6/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAVogwdpBAcBAPnC84gLLco5rfQc3vgNsrMWQWcFQWUNV5hGrgEvxgisbRpSZCo9jz4bp7kEqEAI4yR6bBrM7STagBN1vMowfDSG4A328NuCxuA56HNlwYF92JbB6vrWxh6pERLhF7qNES4hzriDs8LmZAGvL51zsdoBnKcwZDZD";
    let user_first_name ;
@@ -297,6 +319,18 @@ function getCategories(){
         "title":"Mercados",
         "payload":"<POSTBACK_PAYLOAD>",
         "image_url":"http://www.souvenirpara.com.br/img/icon-loja.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Lanchonetes",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://travelpedia.com.br/wp-content/uploads/2018/01/fast-food-icon.png"
+      },
+	  {
+        "content_type":"text",
+        "title":"Novos",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"https://img.tuttoandroid.net/wp-content/uploads/2017/12/SagonCircleIconPack.png"
       }
     ]
 	 
