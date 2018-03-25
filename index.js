@@ -183,15 +183,18 @@ function handleMessage(sender_psid, received_message) {
     ]
 	 
  }
-  
+  if(received_message.text.localeCompare("Roupas") != 0 || received_message.text.localeCompare("Restaurantes") || received_message.text.localeCompare("Mercados")){
+	  // Sends the response2 message
+         callSendAPI(sender_psid, response3); 
+  }
+  else{
   // Sends the response message
   callSendAPI(sender_psid, response);  
   
   // Sends the response2 message
   callSendAPI(sender_psid, response2);  
   
-  // Sends the response2 message
-  callSendAPI(sender_psid, response3);  
+  }
 
 }
 
