@@ -294,12 +294,17 @@ function handleData(first_name){
 	console.log(USER_NAME);
 }
 
-function getCategories(){
+function getCategories(withMessage){
 	let response;
+	
+	if(withMessage == true)
+		let messageText = "Escolha uma categoria abaixo 👇";
+	else
+		messageText = null;
 	
 	response = {
 	 
-    "text": "Escolha uma categoria abaixo 👇",
+    "text": messageText,
     "quick_replies":[
       {
         "content_type":"text",
