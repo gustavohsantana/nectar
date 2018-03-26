@@ -295,10 +295,10 @@ function handleData(first_name){
 }
 
 function getCategories(withMessage){
-	let response;
+	let response,messageText;
 	
 	if(withMessage == true)
-		let messageText = "Escolha uma categoria abaixo 👇";
+		messageText = "Escolha uma categoria abaixo 👇";
 	else
 		messageText = null;
 	
