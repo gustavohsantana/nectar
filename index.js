@@ -1,6 +1,7 @@
 'use strict';
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const delay = require('delay');
 
 let USER_NAME = "";
 // Imports dependencies and set up http server
@@ -207,7 +208,12 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
   callSendAPI(sender_psid, response3);
-  callSendAPI(sender_psid, getCategories(false));
+  delay(200)
+    .then(() => {
+        // Executed after 200 milliseconds 
+		callSendAPI(sender_psid, getCategories(false));
+    });
+  
   }
   
   if (payload === 'no') {
@@ -301,7 +307,7 @@ function getCategories(withMessage){
 	if(withMessage == true)
 		messageText = "Escolha uma categoria abaixo 👇";
 	else
-		messageText = null;
+		messageText = "";
 	
 	response = {
 	 
