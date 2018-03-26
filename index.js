@@ -197,7 +197,7 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
 	 // Send the message to acknowledge the postback
-    responseYes = {"text" :"Protinho 😄! Abaixo está seu cupom: "+"\n\n ?? : "+getRandomTicket+""};
+    responseYes = {"text" :"Protinho 😄! Abaixo está seu cupom: "+"\n\n C�digo : "+getRandomTicket()+""};
 	callSendAPI(sender_psid, responseYes);
 	
 	responseYes = "Precisa gerar mais cupons ? Selecione a categoria abaixo "+USER_NAME+" !😉";
