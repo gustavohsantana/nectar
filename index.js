@@ -201,7 +201,7 @@ function handlePostback(sender_psid, received_postback) {
 	callSendAPI(sender_psid, responseYes);
 	
 	responseYes = "Precisa gerar mais cupons ? Selecione a categoria abaixo "+USER_NAME+" !😉";
-	delay(900)
+	delay(1500)
     .then(() => {
         // Executed after 200 milliseconds
         callSendAPI(sender_psid, getCategories(responseYes));		
