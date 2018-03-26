@@ -173,7 +173,7 @@ function handleMessage(sender_psid, received_message) {
 
 	 if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados") && received_message.text.localeCompare("Lanchonetes") && received_message.text.localeCompare("Novos")){
 	  // Sends the response2 message
-         callSendAPI(sender_psid, getCategories(true)); 
+         callSendAPI(sender_psid, getCategories(null)); 
   }
   else{
 	  // Sends the response message
@@ -189,35 +189,23 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
 	
-   let response,response2,response3;
+  let responseYes,responseNo;
   
   // Get the payload for the postback
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = {"text": "Protinho 😄! Abaixo está seu cupom: " }
-	response2 = {"text": "CUPOM: Feliz2K18" }
-	response3 = {"text": "Se precisar de mais cupons estamos a suas ordens "+USER_NAME+" !😉" }
+	 // Send the message to acknowledge the postback
+    responseYes = "Protinho 😄! Abaixo está seu cupom: "+"\n CUPOM: Feliz2K18";
+	callSendAPI(sender_psid, responseYes);
+	
+	responseYes = "Precisa gerar mais cupons ? Selecione a categoria abaixo "+USER_NAME+" !😉";
+	callSendAPI(sender_psid, getCategories(responseYes));
+	
   } else if (payload === 'no') {
-    response = { "text": "Oops.. Que tal procurar por outras promoções ? " }
-  }
-  // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
-  
-  if (payload === 'yes') {
-  callSendAPI(sender_psid, response2);
-  callSendAPI(sender_psid, response3);
-  delay(200)
-    .then(() => {
-        // Executed after 200 milliseconds 
-		callSendAPI(sender_psid, getCategories(false));
-    });
-  
-  }
-  
-  if (payload === 'no') {
-	   callSendAPI(sender_psid, getCategories(true));
+    responseNo = "Oops.. Que tal procurar por outras promoções ? ";
+	callSendAPI(sender_psid, getCategories(responseNo));
   }
 
 }
@@ -304,10 +292,10 @@ function handleData(first_name){
 function getCategories(withMessage){
 	let response,messageText;
 	
-	if(withMessage == true)
+	if(withMessage == null)
 		messageText = "Escolha uma categoria abaixo 👇";
 	else
-		messageText = "";
+		messageText = withMessage;
 	
 	response = {
 	 
