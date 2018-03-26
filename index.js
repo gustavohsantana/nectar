@@ -197,11 +197,15 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
 	 // Send the message to acknowledge the postback
-    responseYes = {"text" :"Protinho 😄! Abaixo está seu cupom: "+"\n\n C�digo : "+getRandomTicket()+""};
+    responseYes = {"text" :"Protinho 😄! Abaixo está seu cupom: "+"\n\n Codigo : "+getRandomTicket()+" "};
 	callSendAPI(sender_psid, responseYes);
 	
 	responseYes = "Precisa gerar mais cupons ? Selecione a categoria abaixo "+USER_NAME+" !😉";
-	callSendAPI(sender_psid, getCategories(responseYes));
+	delay(900)
+    .then(() => {
+        // Executed after 200 milliseconds
+        callSendAPI(sender_psid, getCategories(responseYes));		
+    });
 	
   } else if (payload === 'no') {
     responseNo = "Oops.. Que tal procurar por outras promoções ? ";
