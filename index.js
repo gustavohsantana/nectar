@@ -197,7 +197,7 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
 	 // Send the message to acknowledge the postback
-    responseYes = {"text" :"Protinho 😄! Abaixo está seu cupom: "+"\n CUPOM: Feliz2K18"};
+    responseYes = {"text" :"Protinho 😄! Abaixo está seu cupom: "+"\n\n ?? : "+getRandomTicket+""};
 	callSendAPI(sender_psid, responseYes);
 	
 	responseYes = "Precisa gerar mais cupons ? Selecione a categoria abaixo "+USER_NAME+" !😉";
@@ -239,6 +239,12 @@ function callSendAPI(sender_psid, response) {
 
 
 // Other methods
+
+function getRandomTicket(){
+	var matrix = ["Feliz2K18","PAFRIDAY10","PROMOSJC","YOUFLY","PERCENT","GHSKKK"];  	
+	
+	return matrix[Math.floor(Math.random() * matrix.length)];
+}
 
 function getRandomResponse(){
 	var matrix = [["Descontos de R$:10,00 para compras acima de R$:50,00 no supermercado Central","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyG6d3Ol9zaUh-AEMnpBkbLM4SZeV-txFPjgyiXcjYkcQNodNf"],
