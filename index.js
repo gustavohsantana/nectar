@@ -172,7 +172,7 @@ function handleMessage(sender_psid, received_message) {
 
 	 if(received_message.text.localeCompare("Roupas") != 0 && received_message.text.localeCompare("Restaurantes") && received_message.text.localeCompare("Mercados") && received_message.text.localeCompare("Lanchonetes") && received_message.text.localeCompare("Novos")){
 	  // Sends the response2 message
-         callSendAPI(sender_psid, getCategories()); 
+         callSendAPI(sender_psid, getCategories(true)); 
   }
   else{
 	  // Sends the response message
@@ -207,10 +207,11 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
   callSendAPI(sender_psid, response2);
   callSendAPI(sender_psid, response3);
+  callSendAPI(sender_psid, getCategories(false));
   }
   
   if (payload === 'no') {
-	   callSendAPI(sender_psid, getCategories());
+	   callSendAPI(sender_psid, getCategories(true));
   }
 
 }
